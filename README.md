@@ -1,46 +1,48 @@
-Sure! Here's a single-file version of your `README.md` for the **Android_Kotlin_Dev** project, written with a clean layout:
+
 
 ```markdown
-# Android_Kotlin_Dev
+# Android Kotlin Development Project
 
-🚀 A Kotlin-based Android development project aimed at learning and building modern mobile apps using Android Studio.
+🚀 A Kotlin-based Android app template for modern mobile development using best practices.
+
+## 📱 Preview
+_(Add screenshots or screen recordings of your app here)_
 
 ## 🛠 Tech Stack
 
-- **Language**: Kotlin  
-- **IDE**: Android Studio (API Level 33 - Android 13 - Tiramisu)  
-- **Build Tool**: Gradle  
-- **UI Design**: XML Layouts / Jetpack Compose *(choose based on usage)*
+- **Language**: 100% Kotlin
+- **Min SDK**: API 21 (Lollipop)
+- **Target SDK**: API 33 (Android 13)
+- **Architecture**: MVVM
+- **Libraries**:
+  - Jetpack Components (ViewModel, LiveData)
+  - Coroutines
+  - Retrofit (for API calls)
+- **Build System**: Gradle
 
 ## ✨ Features
 
-- Kotlin-first Android app architecture
-- Starter template for scalable app development
-- Includes a basic login screen *(customize if needed)*
-- Clean code structure using MVVM or basic Activity-View logic
+- Clean Architecture implementation
+- Dark/Light theme support
+- Basic login screen template
+- Ready-to-extend code structure
+
+## 🏗 Project Structure
 
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/yourusername/Android_Kotlin_Dev.git
-   ```
-2. **Open** the project in Android Studio.
-3. **Run** the app on an emulator or physical device.
-
-## 🖼 Screenshots
-
-_Add screenshots of your app UI here._
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/Android_Kotlin_Dev.git
+```
+2. Open in Android Studio
+3. Run on emulator or device
 
 ## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
+MIT License
 
 ## 👨‍💻 Author
-
 **Dikshanta**  
-
-
+[GitHub Profile](https://github.com/yourusername)
 ```
-
