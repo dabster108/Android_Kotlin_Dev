@@ -147,7 +147,7 @@ fun ProfileBody(innerPadding: PaddingValues) {
         Row(modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically){
-            Button(onClick = ""{
+            Button(onClick = {
                 //to do when button clicked
 
             }, shape = RoundedCornerShape(0.dp),
