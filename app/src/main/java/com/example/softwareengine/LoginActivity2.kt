@@ -69,7 +69,7 @@ fun CardScreen(modifier: Modifier = Modifier) {
                 painter = painterResource(id = R.drawable.me), // Your profile image
                 contentDescription = "Profile",
                 modifier = Modifier
-                    .size(36.dp)
+                    .size(38.dp)
                     .clip(CircleShape)
             )
         }
