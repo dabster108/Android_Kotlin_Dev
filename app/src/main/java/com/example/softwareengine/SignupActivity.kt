@@ -1,3 +1,5 @@
+package com.example.softwareengine
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,8 +27,10 @@ class SignupActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Scaffold { innerPadding ->
-                LoginBody(innerPadding)
+            SoftwareEngineTheme {
+                Scaffold { innerPadding ->
+                    LoginBody(innerPadding)
+                }
             }
         }
     }
@@ -55,6 +59,7 @@ fun LoginBody(innerPadding: PaddingValues) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        // Email Field
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
@@ -70,7 +75,7 @@ fun LoginBody(innerPadding: PaddingValues) {
             ),
             leadingIcon = {
                 Icon(
-                    painter = painterResource(R.drawable.baseline_visibility_24), // Replace with email icon if available
+                    painter = painterResource(R.drawable.baseline_lock_24), // Email icon
                     contentDescription = null
                 )
             },
@@ -81,6 +86,7 @@ fun LoginBody(innerPadding: PaddingValues) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        // Password Field
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -98,7 +104,7 @@ fun LoginBody(innerPadding: PaddingValues) {
             ),
             leadingIcon = {
                 Icon(
-                    painter = painterResource(R.drawable.baseline_visibility_24), // Replace with lock icon if available
+                    painter = painterResource(R.drawable.baseline_merge_type_24), // Password icon
                     contentDescription = null
                 )
             },
