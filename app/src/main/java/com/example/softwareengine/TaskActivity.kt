@@ -5,10 +5,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -128,7 +133,11 @@ fun ProfileBody(modifier: Modifier = Modifier) {
         Text("Gender")
         Row {
             listOf("Male", "Female", "Other").forEach {
-                Row(modifier = Modifier.padding(end = 16.dp)) {
+                Row(
+                    modifier = Modifier
+                        .padding(end = 16.dp)
+                        .align(Alignment.CenterVertically)
+                ) {
                     RadioButton(
                         selected = gender == it,
                         onClick = { gender = it }
@@ -140,7 +149,6 @@ fun ProfileBody(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Terms and Conditions checkbox
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -148,9 +156,43 @@ fun ProfileBody(modifier: Modifier = Modifier) {
                 checked = agreedToTerms,
                 onCheckedChange = { agreedToTerms = it }
             )
-            Spacer(modifier = Modifier.width(8.dp))  // Added spacing between checkbox and text
+            Spacer(modifier = Modifier.width(8.dp))
             Text("I have agreed to the terms and conditions")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically){
+            Button(onClick = {
+                //to do when button clicked
+            }, shape = RoundedCornerShape(0.dp),
+                border = BorderStroke(1.dp, Color.Gray),
+                colors = ButtonDefaults.buttonColors(
+                    contentColor = Color.White,
+                    containerColor = Color.Black
+                )
+            ) {
+                Text(text = "Register")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            Text(
+                text = "Already have an account? Sign In",
+                modifier = Modifier.clickable {
+                    // Handle the Sign In action
+                }
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
