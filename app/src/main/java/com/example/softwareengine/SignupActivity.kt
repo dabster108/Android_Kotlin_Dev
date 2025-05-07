@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -41,6 +42,7 @@ fun LoginBody(innerPadding: PaddingValues) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
+    var rememberMe by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -75,7 +77,7 @@ fun LoginBody(innerPadding: PaddingValues) {
             ),
             leadingIcon = {
                 Icon(
-                    painter = painterResource(R.drawable.baseline_lock_24), // Email icon
+                    painter = painterResource(R.drawable.baseline_lock_24),
                     contentDescription = null
                 )
             },
@@ -104,7 +106,7 @@ fun LoginBody(innerPadding: PaddingValues) {
             ),
             leadingIcon = {
                 Icon(
-                    painter = painterResource(R.drawable.baseline_merge_type_24), // Password icon
+                    painter = painterResource(R.drawable.baseline_lock_24),
                     contentDescription = null
                 )
             },
@@ -124,6 +126,72 @@ fun LoginBody(innerPadding: PaddingValues) {
                 focusedContainerColor = Color.Gray
             )
         )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        // Remember Me & Forgot Password Row
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 18.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(
+                    checked = rememberMe,
+                    onCheckedChange = { rememberMe = it },
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = Color.Green,
+                        checkmarkColor = Color.White
+                    )
+                )
+                Text(text = "Remember me", color = Color.Black)
+            }
+
+            Text(
+                text = "Forgot Password?",
+                color = Color.Blue,
+                modifier = Modifier.clickable {
+
+                }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(onClick = {
+            //to do when button clicked
+
+        }, shape = RoundedCornerShape(0.dp),
+            border = BorderStroke(1.dp, Color.Gray),
+            colors = ButtonDefaults.buttonColors(
+                contentColor = Color. White,
+                containerColor = Color.Gray
+            )
+        ) {
+
+            Text(text = "Login")
+        }
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(
+            text = "New User ? Register Now",
+            color = Color.Blue,
+            modifier = Modifier.clickable {
+
+            }
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(
+            text = "-------User other methods ----- ",
+            color = Color.Black,
+            modifier = Modifier.clickable {
+
+            }
+        )
+
+
     }
 }
 
