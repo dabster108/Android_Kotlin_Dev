@@ -37,6 +37,7 @@ class SignupActivity : ComponentActivity() {
         }
     }
 }
+// activity use case er diagram data flow diagram
 
 @Composable
 fun LoginBody(innerPadding: PaddingValues) {
