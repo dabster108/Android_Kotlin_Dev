@@ -85,7 +85,6 @@ fun ProfileBody(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text("Select your country")
         ExposedDropdownMenuBox(
             expanded = expanded,
             onExpandedChange = { expanded = !expanded }
@@ -131,12 +130,14 @@ fun ProfileBody(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(24.dp))
 
         Text("Gender")
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             listOf("Male", "Female", "Other").forEach {
                 Row(
                     modifier = Modifier
-                        .padding(end = 16.dp)
-                        .align(Alignment.CenterVertically)
+                        .padding(end = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     RadioButton(
                         selected = gender == it,
