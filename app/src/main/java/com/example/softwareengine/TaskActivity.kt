@@ -155,7 +155,8 @@ fun ProfileBody(modifier: Modifier = Modifier) {
         ) {
             Checkbox(
                 checked = agreedToTerms,
-                onCheckedChange = { agreedToTerms = it }
+                onCheckedChange = { agrus
+                    eedToTerms = it }
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text("I have agreed to the terms and conditions")
