@@ -54,11 +54,12 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // ✅ Add these Jetpack Compose dependencies
+    // ✅ Jetpack Compose core dependencies
     implementation("androidx.compose.ui:ui:1.5.0")
     implementation("androidx.compose.material:material:1.5.0")
     implementation("androidx.compose.material:material-icons-extended:1.5.0")
     implementation("androidx.compose.foundation:foundation:1.5.0")
+    implementation("androidx.compose.animation:animation:1.5.0") // 👈 Add this line
     implementation("androidx.navigation:navigation-compose:2.6.0")
     implementation("androidx.activity:activity-compose:1.7.0")
 

@@ -3,6 +3,10 @@ package com.example.softwareengine
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -20,19 +24,57 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.softwareengine.ui.theme.SoftwareEngineTheme
+import kotlinx.coroutines.delay
 
 class SampleActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SoftwareEngineTheme {
+                var showSplash by remember { mutableStateOf(true) }
+
+                LaunchedEffect(Unit) {
+                    delay(5000) // 2.5 seconds
+                    showSplash = false
+                }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    LoginScreen()
+                    AnimatedVisibility(
+                        visible = showSplash,
+                        enter = fadeIn(),
+                        exit = fadeOut()
+                    ) {
+                        SplashScreen()
+                    }
+
+                    if (!showSplash) {
+                        LoginScreen()
+                    }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun SplashScreen() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Image(
+                painter = painterResource(id = R.drawable.doctor), // Replace with your actual logo
+                contentDescription = "Splash Logo",
+                modifier = Modifier.size(120.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Welcome to Daktar Sab App", fontSize = 20.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -66,7 +108,7 @@ fun LoginScreen() {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             leadingIcon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.baseline_merge_type_24),
+                    painter = painterResource(id = R.drawable.baseline_email_24),
                     contentDescription = null
                 )
             }
@@ -101,18 +143,21 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(8.dp))
 
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Checkbox(checked = rememberMe, onCheckedChange = { rememberMe = it })
-                Text("Remember for 30 days")
+                Text("Remember me ")
             }
+            Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "Forgot password",
+                text = "Forgot password?",
                 color = Color.Blue,
-                modifier = Modifier.clickable { /* TODO */ }
+                modifier = Modifier.clickable { /* TODO: Add forgot password action */ }
             )
         }
 
