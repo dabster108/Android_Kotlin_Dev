@@ -7,15 +7,18 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -25,6 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.softwareengine.ui.theme.SoftwareEngineTheme
 import kotlinx.coroutines.delay
+import androidx.compose.animation.core.*
+import androidx.compose.ui.unit.*
 
 class SampleActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +39,7 @@ class SampleActivity : ComponentActivity() {
                 var showSplash by remember { mutableStateOf(true) }
 
                 LaunchedEffect(Unit) {
-                    delay(5000) // 2.5 seconds
+                    delay(5000) // splash duration
                     showSplash = false
                 }
 
@@ -61,20 +66,46 @@ class SampleActivity : ComponentActivity() {
 
 @Composable
 fun SplashScreen() {
+    val dropY = remember { Animatable(-200f) }
+    var showLogo by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        dropY.animateTo(
+            targetValue = 0f,
+            animationSpec = tween(durationMillis = 1200, easing = LinearOutSlowInEasing)
+        )
+        delay(300)
+        showLogo = true
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(24.dp),
         contentAlignment = Alignment.Center
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Image(
-                painter = painterResource(id = R.drawable.doctor), // Replace with your actual logo
-                contentDescription = "Splash Logo",
-                modifier = Modifier.size(120.dp)
+        if (!showLogo) {
+            Box(
+                modifier = Modifier
+                    .offset(y = dropY.value.dp)
+                    .size(30.dp)
+                    .clip(CircleShape)
+                    .background(Color.Blue)
             )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text("Welcome to Daktar Sab App", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        } else {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Image(
+                    painter = painterResource(id = R.drawable.doctor),
+                    contentDescription = "Splash Logo",
+                    modifier = Modifier.size(120.dp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    "Welcome to Daktar Sab App",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
     }
 }
