@@ -12,8 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SoftwareEngine"
         tools:targetApi="31">
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:label="@string/title_activity_splash"
+            android:theme="@style/Theme.SoftwareEngine">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <!-- Launcher Activity -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="true"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/Theme.SoftwareEngine">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- Launcher Activity -->
         <activity
             android:name=".SampleActivity"
             android:exported="true"
@@ -21,41 +41,35 @@
             android:theme="@style/Theme.SoftwareEngine">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Other Activities (without launcher intent filters) -->
+        </activity> <!-- Other Activities (without launcher intent filters) -->
         <activity
             android:name=".TaskActivity"
             android:exported="true"
             android:label="@string/title_activity_task"
             android:theme="@style/Theme.SoftwareEngine" />
-
         <activity
             android:name=".SignupActivity"
             android:exported="true"
             android:label="@string/title_activity_signup"
             android:theme="@style/Theme.SoftwareEngine" />
-
         <activity
             android:name=".LoginActivity2"
             android:exported="true"
             android:label="@string/title_activity_login2"
             android:theme="@style/Theme.SoftwareEngine" />
-
         <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.SoftwareEngine" />
-
         <activity
             android:name=".ProfileActivity"
             android:exported="true"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.SoftwareEngine" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"

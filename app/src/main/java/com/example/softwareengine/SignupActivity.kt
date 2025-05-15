@@ -1,5 +1,7 @@
 package com.example.softwareengine
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -37,11 +39,13 @@ class SignupActivity : ComponentActivity() {
         }
     }
 }
-// activity use case er diagram data flow diagram
 
 @Composable
 fun LoginBody(innerPadding: PaddingValues) {
     val context = LocalContext.current
+    val activity = context as Activity
+
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
@@ -164,6 +168,14 @@ fun LoginBody(innerPadding: PaddingValues) {
             Button(
                 onClick = {
                     if (email == "ram@gmail.com" && password == "password") {
+                        val intent = Intent(context, DashboardActivity::class.java)
+                        context.startActivity(intent)
+                        // first parameter key
+                        // second parameter is value
+                        intent.putExtra("email", email)
+                        intent.putExtra("password", password)
+                        activity.finish() // Finish the current activity
+                        // Optionally, you can use flags to clear the back stack
                         Toast.makeText(context, "Login success", Toast.LENGTH_SHORT).show()
                         showRetryButton = false
                     } else {
@@ -213,7 +225,9 @@ fun LoginBody(innerPadding: PaddingValues) {
                 text = "New User? Register Now",
                 color = Color.Blue,
                 modifier = Modifier.clickable {
-                    // TODO: Navigate to registration
+                    val intent = Intent(context, TaskActivity::class.java)
+                    context.startActivity(intent) // Properly start the activity
+                    //activity.finish()
                 }
             )
 
@@ -223,7 +237,7 @@ fun LoginBody(innerPadding: PaddingValues) {
                 text = "------- Use other methods -------",
                 color = Color.Black,
                 modifier = Modifier.clickable {
-                    // TODO: Other login methods
+
                 }
             )
         }
