@@ -1,5 +1,4 @@
 package com.example.softwareengine
-
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -25,7 +24,6 @@ import androidx.compose.ui.text.input.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.softwareengine.ui.theme.SoftwareEngineTheme
-import com.example.softwareengine.R
 import kotlinx.coroutines.launch
 
 class SignupActivity : ComponentActivity() {
@@ -34,17 +32,16 @@ class SignupActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SoftwareEngineTheme {
-                LoginBody(PaddingValues())
+                LoginBody()
             }
         }
     }
 }
 
 @Composable
-fun LoginBody(innerPadding: PaddingValues) {
+fun LoginBody() {
     val context = LocalContext.current
     val activity = context as Activity
-
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -168,14 +165,12 @@ fun LoginBody(innerPadding: PaddingValues) {
             Button(
                 onClick = {
                     if (email == "ram@gmail.com" && password == "password") {
-                        val intent = Intent(context, DashboardActivity::class.java)
+                        val intent = Intent(context, DashboardActivity::class.java).apply {
+                            putExtra("email", email)
+                            putExtra("password", password)
+                        }
                         context.startActivity(intent)
-                        // first parameter key
-                        // second parameter is value
-                        intent.putExtra("email", email)
-                        intent.putExtra("password", password)
-                        activity.finish() // Finish the current activity
-                        // Optionally, you can use flags to clear the back stack
+                        activity.finish()
                         Toast.makeText(context, "Login success", Toast.LENGTH_SHORT).show()
                         showRetryButton = false
                     } else {
@@ -226,18 +221,7 @@ fun LoginBody(innerPadding: PaddingValues) {
                 color = Color.Blue,
                 modifier = Modifier.clickable {
                     val intent = Intent(context, TaskActivity::class.java)
-                    context.startActivity(intent) // Properly start the activity
-                    //activity.finish()
-                }
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Text(
-                text = "------- Use other methods -------",
-                color = Color.Black,
-                modifier = Modifier.clickable {
-
+                    context.startActivity(intent)
                 }
             )
         }
@@ -248,6 +232,6 @@ fun LoginBody(innerPadding: PaddingValues) {
 @Composable
 fun PreviewLoginBody() {
     SoftwareEngineTheme {
-        LoginBody(PaddingValues())
+        LoginBody()
     }
 }

@@ -1,7 +1,10 @@
 package com.example.softwareengine
 
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -48,6 +51,8 @@ fun ProfileBody(modifier: Modifier = Modifier) {
 
     val countries = listOf("Nepal", "India")
     val context = LocalContext.current
+    val sharedPreferences: SharedPreferences = context.getSharedPreferences("UserProfile", Context.MODE_PRIVATE)
+    val editor = sharedPreferences.edit()
 
     Column(
         modifier = modifier
@@ -155,7 +160,7 @@ fun ProfileBody(modifier: Modifier = Modifier) {
         ) {
             Checkbox(
                 checked = agreedToTerms,
-                onCheckedChange = {agreedToTerms = it }
+                onCheckedChange = { agreedToTerms = it }
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text("I have agreed to the terms and conditions")
@@ -163,12 +168,30 @@ fun ProfileBody(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Row(modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically){
-            Button(onClick = {
-                //to do when button clicked
-            }, shape = RoundedCornerShape(0.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(
+                onClick = {
+                    val localEmail : String = sharedPreferences.getString("email", "").toString()
+                    if(email == localEmail) {
+                        Toast.makeText(context, "Email already exists", Toast.LENGTH_SHORT).show()
+                        return@Button
+                    }
+                    editor.putString("firstName", firstName)
+                    editor.putString("lastName", lastName)
+                    editor.putString("email", email)
+                    editor.putString("country", country)
+                    editor.putString("dob", dob)
+                    editor.putString("gender", gender)
+                    editor.putBoolean("agreedToTerms", agreedToTerms)
+                    editor.apply()
+
+                    Toast.makeText(context, "Data saved successfully!", Toast.LENGTH_SHORT).show()
+                },
+                shape = RoundedCornerShape(0.dp),
                 border = BorderStroke(1.dp, Color.Gray),
                 colors = ButtonDefaults.buttonColors(
                     contentColor = Color.White,
