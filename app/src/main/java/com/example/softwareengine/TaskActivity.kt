@@ -178,7 +178,7 @@ fun ProfileBody(modifier: Modifier = Modifier) {
                     val localEmail : String = sharedPreferences.getString("email", "").toString()
                     if(email == localEmail) {
                         Toast.makeText(context, "Email already exists", Toast.LENGTH_SHORT).show()
-                        return@Button
+
                     }
                     editor.putString("firstName", firstName)
                     editor.putString("lastName", lastName)
