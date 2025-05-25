@@ -13,6 +13,17 @@
         android:theme="@style/Theme.SoftwareEngine"
         tools:targetApi="31">
         <activity
+            android:name=".ListView"
+            android:exported="true"
+            android:label="@string/title_activity_list_view"
+            android:theme="@style/Theme.SoftwareEngine">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:label="@string/title_activity_splash"
