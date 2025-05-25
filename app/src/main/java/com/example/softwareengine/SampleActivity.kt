@@ -95,7 +95,7 @@ fun SplashScreen() {
         } else {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Image(
-                    painter = painterResource(id = R.drawable.doctor),
+                    painter = painterResource(id = R.drawable.baseline_email_24),
                     contentDescription = "Splash Logo",
                     modifier = Modifier.size(120.dp)
                 )
