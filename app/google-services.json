@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "762344020434",
+    "firebase_url": "https://ai36-d4284-default-rtdb.firebaseio.com",
+    "project_id": "ai36-d4284",
+    "storage_bucket": "ai36-d4284.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762344020434:android:e1af4cea2a0c22da0d900b",
+        "android_client_info": {
+          "package_name": "com.example.softwareengine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRJvgrTpU4EmctBrmwVqd2uKq3mkEDt8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
